@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BTotal1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ca18f2ef-3c8e-4468-9853-0e2362f177b4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cus_sal_id" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     backup_sales.`barcode` AS backup_sales_barcode,
+     backup_sales.`name` AS backup_sales_name,
+     backup_sales.`price` AS backup_sales_price,
+     backup_sales.`qty` AS backup_sales_qty,
+     backup_sales.`total` AS backup_sales_total,
+     backup_sales.`discount` AS backup_sales_discount,
+     customer.`firstname` AS customer_firstname,
+     customer.`lastname` AS customer_lastname,
+     customer.`phone` AS customer_phone,
+     customer.`address` AS customer_address,
+     invoices.`inv_id` AS invoices_inv_id,
+     invoices.`n_inv` AS invoices_n_inv,
+     invoices.`total` AS invoices_total,
+     invoices.`pay` AS invoices_pay,
+     invoices.`balance` AS invoices_balance,
+     invoices.`datetime` AS invoices_datetime,
+     backup_sales.`sal_id` AS backup_sales_sal_id
+FROM
+     `backup_sales` backup_sales INNER JOIN `customer` customer ON backup_sales.`cus_id` = customer.`cus_id`
+     INNER JOIN `invoices` invoices ON backup_sales.`sal_id` = invoices.`inv_id` WHERE backup_sales.`sal_id` = $P{cus_sal_id}]]>
+	</queryString>
+	<field name="backup_sales_barcode" class="java.lang.String"/>
+	<field name="backup_sales_name" class="java.lang.String"/>
+	<field name="backup_sales_price" class="java.lang.Double"/>
+	<field name="backup_sales_qty" class="java.lang.Integer"/>
+	<field name="backup_sales_total" class="java.lang.Double"/>
+	<field name="backup_sales_discount" class="java.lang.Integer"/>
+	<field name="customer_firstname" class="java.lang.String"/>
+	<field name="customer_lastname" class="java.lang.String"/>
+	<field name="customer_phone" class="java.lang.String"/>
+	<field name="customer_address" class="java.lang.String"/>
+	<field name="invoices_inv_id" class="java.lang.Long"/>
+	<field name="invoices_n_inv" class="java.lang.String"/>
+	<field name="invoices_total" class="java.lang.Double"/>
+	<field name="invoices_pay" class="java.lang.Double"/>
+	<field name="invoices_balance" class="java.lang.Double"/>
+	<field name="invoices_datetime" class="java.sql.Timestamp"/>
+	<field name="backup_sales_sal_id" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="218" y="0" width="122" height="23" uuid="4aa94522-59f9-45c2-a9ac-8d631b964084"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[الفاتورة]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="114" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="375" y="0" width="156" height="32" uuid="7a9f9e41-b517-4d92-9f59-a7962ffedfed"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ولاية باتنة-دائرة إشمول -شارع الشهيد مصطفى بن بولعيد]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="98" y="3" width="50" height="15" uuid="3ee178e0-464d-4788-8841-318eacecda56"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[التاريخ:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="99" y="20" width="70" height="15" uuid="21b90101-e286-4ad4-b74c-eb3eaa93d275"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[تاريخ/ ن شكوى:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="99" y="89" width="50" height="15" uuid="965a46e6-db2c-411f-a4fe-423b751da27c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[رقم/ف:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="480" y="51" width="45" height="15" uuid="57abb7e9-3dca-48ae-95cb-e1a9f6496568"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[إلى :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="493" y="81" width="32" height="15" uuid="5f9950f7-18b0-451f-bd9e-c5be9932c9bc"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[العنوان:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="493" y="94" width="32" height="15" uuid="b16b3d01-7814-4a70-897c-8d9d9f871b1e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[الهاتف:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="430" y="66" width="95" height="15" uuid="a470f861-357e-45c6-934a-0bd4d64bbc49"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customer_lastname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="335" y="66" width="95" height="15" uuid="5dd22678-c7b3-44d7-a9a3-f6e8d5d4fbb3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customer_firstname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="335" y="81" width="158" height="15" uuid="ea704eb2-9190-4a72-a9f6-bcc658e6b6ee"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customer_address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="425" y="94" width="68" height="15" uuid="0f0e5676-4763-45bc-8ba3-8ace02149d74"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customer_phone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="22" y="89" width="78" height="15" uuid="bafc4b79-c361-42c3-8361-8f42f191d6bf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoices_n_inv}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy/MM/dd">
+				<reportElement x="23" y="3" width="75" height="18" uuid="fea9aa81-c709-4b59-b104-cb2792606831"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("yyyy-MM-dd").format(new Date().getTime())]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="23" y="21" width="75" height="18" uuid="c5733d52-1733-4e5e-b4fe-c71a689af9b0"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("yyyy-MM-dd").format($F{invoices_datetime}+15)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="492" y="35" width="32" height="15" uuid="bcac0ed2-1ed4-4bed-ba3d-ffcede98e04f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[الهاتف:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="415" y="36" width="78" height="15" uuid="b6f16ea3-8063-4b2b-b9c5-be50dd4089af"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[0123456789]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="473" y="0" width="50" height="20" uuid="aeff8203-d984-4b0b-958b-9ea470e55ac4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[الرقم]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="0" width="97" height="20" uuid="eec9dec0-a467-4dcd-bd47-27213432d548"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[المنتوج ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="0" width="97" height="20" uuid="3e547158-857b-4f37-9031-a436579c9cd3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[السعر]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="0" width="80" height="20" uuid="e10dd219-de7a-4b1f-8497-3a910d54ac46"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[الكمية]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="102" y="0" width="97" height="20" uuid="e5df8191-81b9-47c2-9493-b001df6b6a28"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[المبلغ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="473" y="0" width="50" height="20" uuid="b57e83a4-1208-4377-8766-540ffe57ca0b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="376" y="0" width="97" height="20" uuid="dce95166-7ec8-4359-b7eb-9b4dd97a6220"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{backup_sales_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="0" width="97" height="20" uuid="2109e64a-94cc-4dfd-a41e-839eb31b721c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{backup_sales_price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="199" y="0" width="80" height="20" uuid="e1916630-0b07-44f1-8cd8-3546af94e471"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{backup_sales_qty}]]></textFieldExpression>
+			</textField>
+			<textField pattern=" #,##0.00 " isBlankWhenNull="true">
+				<reportElement x="102" y="0" width="97" height="20" uuid="2c64f6ae-b384-4774-a60b-06d974b01e5e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{backup_sales_total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="71">
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
+				<reportElement mode="Opaque" x="13" y="0" width="47" height="52" uuid="67401c70-a941-40a5-8072-da0821b05552"/>
+				<imageExpression><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage( new com.google.zxing.qrcode.QRCodeWriter().encode( $F{invoices_n_inv}, com.google.zxing.BarcodeFormat.QR_CODE, 200, 200))]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Opaque" x="206" y="11" width="102" height="15" uuid="71834ccb-99cb-4c90-9192-6fa34c955e9e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[شكرا لزيارتكم لنا]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="343" y="2" width="200" height="50" uuid="205c76fc-2aeb-4b13-82b9-40eea0c870d6"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="EAN13" drawText="true" checksumRequired="false">
+					<jr:codeExpression><![CDATA[new StringBuffer().append("6"+$F{invoices_n_inv}).toString()]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+		</band>
+	</columnFooter>
+	<summary>
+		<band height="122" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="128" y="72" width="32" height="18" uuid="0257adc4-1235-4e2d-af38-84cf651df410"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[دفع:]]></text>
+			</staticText>
+			<textField pattern=" #,##0.00 دج" isBlankWhenNull="true">
+				<reportElement x="28" y="89" width="100" height="20" uuid="9a396377-5518-4d6f-9bc0-f2b8756e1847"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoices_balance}]]></textFieldExpression>
+			</textField>
+			<textField pattern=" #,##0.00 دج" isBlankWhenNull="true">
+				<reportElement x="28" y="51" width="100" height="20" uuid="58a2328f-54b4-44d1-a99b-33e54e48afba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoices_total}]]></textFieldExpression>
+			</textField>
+			<textField pattern=" #,##0.00 دج" isBlankWhenNull="true">
+				<reportElement x="28" y="71" width="100" height="20" uuid="23ef2b51-b3a3-46db-800e-0562c6366c99"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoices_pay}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="375" y="84" width="156" height="15" uuid="4989a06b-180e-4004-96c0-239df776d476"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[لايمكن إيداع شكوى أكثر من 15 يوم.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="128" y="52" width="66" height="20" uuid="8538011b-ce60-4ab5-a7ef-0412722a8383"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[المبلغ الإجمالي:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="128" y="90" width="32" height="18" uuid="9e82a377-4d24-49e9-954f-553e445d5882"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[متبقي:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="492" y="59" width="32" height="15" uuid="576adfb9-3204-41f7-8710-bdb127553b89"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[تنبيه:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

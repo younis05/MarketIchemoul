@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BPieChartSales" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="518bc4d9-ad82-45f9-aaf4-030af4d02d3e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1" mode="Opaque" fontName="Arial" pdfEncoding="Identity-H"/>
+	<parameter name="dt1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dt2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     *,
+     stock.`p_name` AS stock_p_name,
+     stock.`total` AS stock_total,
+     stock.`p_id` AS stock_p_id,
+     backup_sales.`p_id` AS backup_sales_p_id,
+     backup_sales.`total` AS backup_sales_total,
+     backup_sales.`datetime` AS backup_sales_datetime,
+     backup_sales.`name` AS backup_sales_name,
+     backup_sales.`sal_id` AS backup_sales_sal_id,
+      sum(backup_sales.`total`)
+FROM
+     `stock` stock INNER JOIN `backup_sales` backup_sales ON stock.`p_id` = backup_sales.`p_id` WHERE backup_sales.`datetime` BETWEEN $P{dt1} AND $P{dt2} group by stock.`p_name`]]>
+	</queryString>
+	<field name="p_id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cat_id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="barcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="p_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="price" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="qty" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="app_id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sal_id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cus_id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="inv_id" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="discount" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="datetime" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="stock_p_name" class="java.lang.String"/>
+	<field name="stock_total" class="java.lang.Double"/>
+	<field name="stock_p_id" class="java.lang.Long"/>
+	<field name="backup_sales_p_id" class="java.lang.Long"/>
+	<field name="backup_sales_total" class="java.lang.Double"/>
+	<field name="backup_sales_datetime" class="java.sql.Timestamp"/>
+	<field name="backup_sales_name" class="java.lang.String"/>
+	<field name="backup_sales_sal_id" class="java.lang.Long"/>
+	<field name="sum(backup_sales.`total`)" class="java.lang.Double"/>
+	<background>
+		<band height="802" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="802" uuid="7a5b52b7-8c7b-49b8-b085-8e06dfba0233"/>
+				<imageExpression><![CDATA["bg01.png"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="153" y="0" width="249" height="55" forecolor="#FFFFFF" backcolor="#2F3D94" uuid="cc3cfba9-4f1b-4c40-96c1-159d5ab5cba3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="30" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[بيانات المبيعات]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="329" splitType="Stretch">
+			<pie3DChart>
+				<chart>
+					<reportElement mode="Transparent" x="0" y="0" width="555" height="329" forecolor="#FFFFFF" backcolor="#2F3D94" uuid="7d1b7b0e-e73c-4d49-abc9-a48270d8ea0a"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend position="Bottom">
+						<font fontName="Arial" size="14" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</chartLegend>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{backup_sales_name}+' '+$F{sum(backup_sales.`total`)}.toString()]]></keyExpression>
+					<valueExpression><![CDATA[$F{backup_sales_total}]]></valueExpression>
+					<labelExpression><![CDATA[$F{backup_sales_name}]]></labelExpression>
+				</pieDataset>
+				<pie3DPlot>
+					<plot>
+						<seriesColor seriesOrder="0" color="#076DFF"/>
+						<seriesColor seriesOrder="1" color="#FF5700"/>
+						<seriesColor seriesOrder="2" color="#FF0048"/>
+						<seriesColor seriesOrder="3" color="#4E0054"/>
+						<seriesColor seriesOrder="4" color="#A88C40"/>
+						<seriesColor seriesOrder="5" color="#002A0D"/>
+						<seriesColor seriesOrder="6" color="#1A0054"/>
+						<seriesColor seriesOrder="7" color="#2A000D"/>
+						<seriesColor seriesOrder="8" color="#222222"/>
+						<seriesColor seriesOrder="9" color="#5E5E5E"/>
+						<seriesColor seriesOrder="10" color="#FF00FF"/>
+						<seriesColor seriesOrder="11" color="#DADADA"/>
+						<seriesColor seriesOrder="12" color="#FF0019"/>
+						<seriesColor seriesOrder="13" color="#770000"/>
+						<seriesColor seriesOrder="14" color="#167D2E"/>
+						<seriesColor seriesOrder="15" color="#4E0037"/>
+						<seriesColor seriesOrder="16" color="#6B582C"/>
+						<seriesColor seriesOrder="17" color="#FFFF00"/>
+						<seriesColor seriesOrder="18" color="#0000CC"/>
+						<seriesColor seriesOrder="19" color="#00CC00"/>
+					</plot>
+					<itemLabel>
+						<font fontName="Arial" size="12" isBold="true" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</itemLabel>
+				</pie3DPlot>
+			</pie3DChart>
+		</band>
+	</summary>
+</jasperReport>
